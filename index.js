@@ -1,7 +1,10 @@
 let express = require('express');
 const morgan = require('morgan');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
 const port = 3000;
+
+const uri = "mongodb+srv://kcy96:DhEPU0pwqZSaaLVr@practicourse.r3ukg.mongodb.net/";
 
 // Include the logging for all requests
 app.use(morgan('common'));
@@ -9,9 +12,32 @@ app.use(morgan('common'));
 app.use(express.static('view'));
 app.use(express.json());
 
+const client = new MongoClient(uri, {
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    }
+});
+async function runDBConnection() {
+    try {
+        await client.connect();
+        console.log('Connected to MongoDB');
+    } catch (ex) {
+        console.error(ex);
+    }
+}
+runDBConnection(); 
+
+
+const CourseApi = require('./controllers/CoursesController');
+const UserApi = require('./controllers/CoursesController');
+
+app.use('/Course', CourseApi);
+app.use('/User', UserApi);
+
 app.get('/', (req, resp) =>{
     resp.redirect('/HomePage.html');
-
 })
 
 app.use( (error, request, response, next)  => {
