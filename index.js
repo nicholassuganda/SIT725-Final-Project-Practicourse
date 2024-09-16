@@ -30,11 +30,6 @@ async function runDBConnection() {
 runDBConnection(); 
 
 
-const CourseApi = require('./controllers/CoursesController');
-const UserApi = require('./controllers/CoursesController');
-
-app.use('/Course', CourseApi);
-app.use('/User', UserApi);
 
 app.get('/', (req, resp) =>{
     resp.redirect('/HomePage.html');
