@@ -1,0 +1,17 @@
+{
+  "name": "practicourse",
+  "version": "1.0.0",
+  "description": "SIT725 - Applied Software Engineering Final Project Practicourse",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "mongodb": "^6.9.0",
+    "morgan": "^1.10.0",
+    "node": "^22.8.0"
+  }
+}
