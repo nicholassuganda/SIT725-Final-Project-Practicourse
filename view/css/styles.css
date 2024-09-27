@@ -20,7 +20,7 @@ footer {
     width: 100%;
 }
 
-.body-login {
+.body-login-register {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -81,4 +81,58 @@ footer {
     text-decoration: none;
     color: #007bff;
     font-size: 14px;
+}
+
+.register-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="date"], select {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.checkbox-group {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.register-button:hover {
+    opacity: 0.9;
 }
