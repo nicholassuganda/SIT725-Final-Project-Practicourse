@@ -41,7 +41,7 @@ function displayCourses(courseData) {
                     </div>
                     <div class="col-md-3 text-end">
                         <p class="game-price">${course.price}</p>
-                        <a href="${course.detailsLink}" class="btn btn-primary">View</a>
+                        <a href="${course.detailsLink}" class="btn btn-dark">View</a>
                     </div>
                 </div>
             </div>
