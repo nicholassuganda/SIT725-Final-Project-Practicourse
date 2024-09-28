@@ -4,21 +4,21 @@ const courses = [
         description: "Learn the fundamentals of First Aid to help those in needs.",
         thumbnail: "./images/image.jpg",
         price: "$99.99",
-        detailsLink: "./xxxxx.html"
+        detailsLink: "./courseDetail.html"
     },
     {
         name: " Adobe Photoshop Mastery Class",
         description: "Master Adobe Photoshop skill with practical examples.",
         thumbnail: "./images/image2.jpg",
         price: "$149.99",
-        detailsLink: "./xxxxx.html"
+        detailsLink: "./courseDetail.html"
     },
     {
         name: "Introduction to AI",
         description: "Understand the basics of artificial intelligence, neural networks, and deep learning.",
         thumbnail: "./images/image3.jpg",
         price: "$199.99",
-        detailsLink: "./xxxxx.html"
+        detailsLink: "./courseDetail.html"
     }
 ];
 

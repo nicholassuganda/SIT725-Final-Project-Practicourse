@@ -141,3 +141,44 @@ input[type="text"], input[type="password"], input[type="email"], input[type="dat
     border-color: #343a40;
     color: #ffffff;
 }
+
+#profileImage {
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+#imageInput {
+    display: none;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+}
+
+#bioText {
+    font-size: 1rem;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#editProfileButton {
+    margin-left: auto;
+}
+
+#passwordDisplay {
+    font-size: 1rem;
+    color: #333;
+}
+
+hr {
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
