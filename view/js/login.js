@@ -22,8 +22,12 @@ document.getElementById('btn_login').addEventListener('click', async function ()
         const result = await response.json();
 
         if (response.status === 200) {
+            // Store the username in sessionStorage
+            sessionStorage.setItem('username', username);
+            // Show the login message
             console.log('Login successful!');
-            alert('Login successful! Welcome ' + username); // Show the error message
+            alert('Login successful!'); 
+            
             window.location.href = '/HomePage.html'; // Redirect after successful login
         } else {
             console.error('Login failed:', result.message);
