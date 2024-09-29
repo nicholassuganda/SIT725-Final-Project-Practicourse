@@ -1,14 +1,18 @@
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 // Controller function to handle user registration
 exports.registerUser = async (req, res) => {
     try {
         const { username, password, firstname, lastname, dob, gender, email, role } = req.body;
 
+        // Hash the password before saving it
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         // Create a new user
         const newUser = new User({
             username,
-            password,
+            password: hashedPassword,  // Store hashed password
             firstname,
             lastname,
             dob,
@@ -24,11 +28,39 @@ exports.registerUser = async (req, res) => {
     } catch (err) {
         console.error('Error registering user:', err);
 
-        // Handle duplicate email error
+        // Handle duplicate email or username error
         if (err.code === 11000) {
-            res.status(400).json({ message: 'Email already exists.' });
+            res.status(400).json({ message: 'Username or Email already exists.' });
         } else {
             res.status(500).json({ message: 'Failed to register user' });
         }
+    }
+};
+
+// Controller function to handle user login using username instead of email
+exports.loginUser = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        // Check if user exists with the given username
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Compare the password with the stored hashed password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: 'Invalid password' });
+        }
+
+        // If login is successful, respond with success
+        res.status(200).json({ message: 'Login successful!' });
+
+        // (Optionally, you can also generate a token/session here if you're using JWT or sessions)
+
+    } catch (err) {
+        console.error('Error logging in user:', err);
+        res.status(500).json({ message: 'Internal server error' });
     }
 };

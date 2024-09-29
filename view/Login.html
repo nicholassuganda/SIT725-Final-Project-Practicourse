@@ -1,30 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Practicourse</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Practicourse</title>
 
-        <link rel="stylesheet" href="./css/styles.css">
-    </head>
+    <!-- Import Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 
-    <body class="body-login-register">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/login.css">
+</head>
 
-        <div class="login-container">
-            <div>
-                <img class="logo" src="images/logo.jpg" alt="Practicourse Logo">
+<body>
+    <div class="section "></div>
+    <main>
+        <center>
+            <div class="container">
+                <div class="z-depth-1 grey lighten-4 row"
+                    style="display: inline-block; padding: 32px 48px; border: 1px solid #EEE;">
+
+                    <!-- Logo -->
+                    <img class="responsive-img" style="width: 150px;" src="./images/logo.jpg" />
+                    <div class="section"></div>
+
+                    <div class="card-header">
+                        <a href="HomePage.html">
+                            <i class="material-icons">arrow_back</i>
+                        </a>
+                    </div>
+
+
+                    <!-- Login Form -->
+                    <form class="col s12" id="loginForm">
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='text' name='username' id='username' required />
+                                <label for='username'>Enter your username</label>
+                            </div>
+                        </div>
+                    
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='password' name='password' id='password' required />
+                                <label for='password'>Enter your password</label>
+                            </div>
+                            <label style='float: right;'>
+                                <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+                            </label>
+                        </div>
+                    
+                        <br />
+                        <center>
+                            <div class='row'>
+                                <button type="button" id="btn_login" class='col s12 btn btn-large waves-effect indigo'>Login</button>
+                            </div>
+                        </center>
+                    </form>
+
+
+
+                    <a href="Register.html">Create account</a>
+                </div>
             </div>
-            <input type="text" class="login-input" placeholder="Username" required>
-            <input type="password" class="login-input" placeholder="Password" required>
-            <button class="login-button">Log in</button>
-            <div class="login-options">
-                <span>or</span>
-                <a href="register.html">
-                <button class="signup-button">Sign up</button>
-                </a>
-            </div>
-        </div>
+        </center>
 
-    </body>
+        <div class="section"></div>
+        <div class="section"></div>
+    </main>
+
+    <!-- Import Materialize Icons and JS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+
 </html>
