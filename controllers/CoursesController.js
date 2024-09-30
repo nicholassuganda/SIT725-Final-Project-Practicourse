@@ -29,3 +29,36 @@ exports.uploadCourse = async (req, res) => {
         res.status(500).json({ message: 'Error uploading course' });
     }
 };
+
+// Controller function to fetch all courses
+exports.getAllCourses = async (req, res) => {
+    try {
+        // Fetch all courses from the database
+        const courses = await Course.find({});
+        res.status(200).json(courses); // Return the courses as JSON
+    } catch (err) {
+        console.error('Error fetching courses:', err);
+        res.status(500).json({ message: 'Error fetching courses' });
+    }
+};
+
+// Controller function to fetch course details by ID
+exports.getCourseById = async (req, res) => {
+    try {
+        const courseId = req.query.id;
+
+        // Find the course by ID
+        const course = await Course.findById(courseId);
+
+        // If course not found, return 404
+        if (!course) {
+            return res.status(404).json({ message: 'Course not found' });
+        }
+
+        // Return the course details
+        res.status(200).json(course);
+    } catch (err) {
+        console.error('Error fetching course details:', err);
+        res.status(500).json({ message: 'Failed to fetch course details' });
+    }
+};

@@ -1,33 +1,48 @@
-// browseCourse.js
-import { courses } from './js/course.js'; // Ensure this points to your course data correctly
-
 document.addEventListener('DOMContentLoaded', () => {
-    displayCourses(courses); // Display courses on page load
+    fetchCourses(); // Fetch courses from the server on page load
 });
 
-// Function to display courses
+// Function to fetch courses from the backend
+async function fetchCourses() {
+    try {
+        const response = await fetch('/course/list');
+        const courses = await response.json();
+        console.log('Fetched courses:', courses); // Log the courses to ensure it's an array
+        displayCourses(courses);
+    } catch (error) {
+        console.error('Error fetching courses:', error);
+    }
+}
+
+
+// Function to display courses dynamically
 function displayCourses(courseData) {
-    const courseList = document.querySelector('.course-list'); // Make sure this matches the HTML
-    courseList.innerHTML = ''; // Clear existing content
+    if (!Array.isArray(courseData)) {
+        console.error('Expected an array of courses, but got:', courseData);
+        return;  // Early return if courseData is not an array
+    }
+
+    const courseList = document.querySelector('.course-list');
+    courseList.innerHTML = '';  // Clear existing content
 
     // Iterate over the course data and generate HTML for each course
     courseData.forEach(course => {
         const courseEntry = document.createElement('div');
         courseEntry.classList.add('course-entry', 'm-3', 'p-2', 'border');
-        
+
         // Construct the HTML for each course
         courseEntry.innerHTML = `
             <div class="row">
                 <div class="col-md-3">
-                    <img src="${course.thumbnail}" alt="${course.name} Thumbnail" class="img-fluid">
+                    <img src="${course.courseImage}" alt="${course.courseName} Thumbnail" class="img-fluid">
                 </div>
                 <div class="col-md-6">
-                    <h5>${course.name}</h5>
-                    <p>${course.description}</p>
+                    <h5>${course.courseName}</h5>
+                    <p>${course.courseDescription}</p>
                 </div>
                 <div class="col-md-3 text-end">
-                    <p class="course-price">$${course.price.toFixed(2)}</p>
-                    <a href="${course.detailsLink}" class="btn btn-dark">View</a>
+                    <p class="course-price">$${course.coursePrice.toFixed(2)}</p>
+                    <a href="courseDetail.html?id=${course._id}" class="btn btn-dark">View</a>
                 </div>
             </div>
         `;
@@ -35,24 +50,25 @@ function displayCourses(courseData) {
     });
 }
 
+
 // Optional: Handle sorting and filtering (if you need it)
-document.getElementById('sortingForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const searchQuery = document.getElementById('searchName').value.toLowerCase();
-    const sortOption = document.getElementById('sortByName').value; // Ensure correct ID
+// document.getElementById('sortingForm').addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const searchQuery = document.getElementById('searchName').value.toLowerCase();
+//     const sortOption = document.getElementById('sortByName').value;
 
-    // Filter courses based on search query
-    let filteredCourses = courses.filter(course => 
-        course.name.toLowerCase().includes(searchQuery)
-    );
+//     // Filter courses based on search query
+//     let filteredCourses = courses.filter(course => 
+//         course.courseName.toLowerCase().includes(searchQuery)
+//     );
 
-    // Sort courses based on selected option
-    if (sortOption === 'aToZ') {
-        filteredCourses.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortOption === 'zToA') {
-        filteredCourses.sort((a, b) => b.name.localeCompare(a.name));
-    }
+//     // Sort courses based on selected option
+//     if (sortOption === 'aToZ') {
+//         filteredCourses.sort((a, b) => a.courseName.localeCompare(b.courseName));
+//     } else if (sortOption === 'zToA') {
+//         filteredCourses.sort((a, b) => b.courseName.localeCompare(a.courseName));
+//     }
 
-    // Re-render the course list
-    displayCourses(filteredCourses);
-});
+//     // Re-render the course list
+//     displayCourses(filteredCourses);
+// });
