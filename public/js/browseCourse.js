@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to fetch courses from the backend
 async function fetchCourses() {
     try {
-        const response = await fetch('/course/list');
+        const response = await fetch('/course/getAllCourses');
         const courses = await response.json();
         console.log('Fetched courses:', courses); // Log the courses to ensure it's an array
         displayCourses(courses);

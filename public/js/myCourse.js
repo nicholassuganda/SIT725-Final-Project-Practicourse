@@ -55,14 +55,14 @@ $(document).ready(function() {
 
     // Load courses dynamically from the backend
     $.ajax({
-        url: '/course/allCourses',
+        url: '/course/getAllCourses',
         method: 'GET',
         success: function(courses) {
             console.log('Fetched courses:', courses); // Log the response
             let coursesContainer = $('#coursesContainer');
             coursesContainer.empty(); // Clear existing courses
 
-            courses.courses.forEach(course => {
+            courses.forEach(course => {
                 let courseCard = `
                     <div class="col-md-6 mb-3">
                         <div class="card">

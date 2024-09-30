@@ -10,17 +10,10 @@ router.post('/uploadCourse', upload.fields([
     { name: 'courseVideo', maxCount: 1 }
 ]), Course.uploadCourse);
 
-// GET route to fetch all courses
-router.get('/allCourses', getCourses); // Use the getCourses function here
-
 // Route to fetch all courses
 router.get('/getAllCourses', Course.getAllCourses);
 
 // Route to fetch course details by ID
 router.get('/details', Course.getCourseById);
-
-// Route to get the list of courses
-router.get('/list', Course.getAllCourses);
-
 
 module.exports = router;
