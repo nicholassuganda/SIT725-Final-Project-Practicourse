@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'view')));
 // Parse incoming requests with JSON payloads
 app.use(express.json());
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB connection
 connectDB();
