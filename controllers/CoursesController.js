@@ -1,7 +1,7 @@
-const Course = require('../models/Course');
+import Course from '../models/Course.js';
 
 // Controller function to handle course upload
-exports.uploadCourse = async (req, res) => {
+export const uploadCourse = async (req, res) => {
     try {
         const courseImage = req.files.courseImage ? req.files.courseImage[0].path : null;
         const courseVideo = req.files.courseVideo ? req.files.courseVideo[0].path : null;
@@ -18,7 +18,7 @@ exports.uploadCourse = async (req, res) => {
         });
 
         await newCourse.save();
-
+        
         // Return success response
         res.status(200).json({
             message: 'Course uploaded successfully!',
@@ -31,7 +31,7 @@ exports.uploadCourse = async (req, res) => {
 };
 
 // Controller function to fetch all courses
-exports.getAllCourses = async (req, res) => {
+export const getAllCourses = async (req, res) => {
     try {
         // Fetch all courses from the database
         const courses = await Course.find({});
@@ -43,7 +43,7 @@ exports.getAllCourses = async (req, res) => {
 };
 
 // Controller function to fetch course details by ID
-exports.getCourseById = async (req, res) => {
+export const getCourseById = async (req, res) => {
     try {
         const courseId = req.query.id;
 
@@ -62,4 +62,3 @@ exports.getCourseById = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch course details' });
     }
 };
-

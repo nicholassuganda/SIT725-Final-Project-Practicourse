@@ -1,13 +1,11 @@
-const express = require('express');
-const userController = require('../controllers/userController'); // Import the controller
+import express from 'express';
+import { registerUser, loginUser, searchUserByUsername } from '../controllers/userController.js';
 
 const router = express.Router();
 
 // Define routes and forward to the controller
-router.post('/register', userController.registerUser); // Forward to the registerUser function
-// Login route
-router.post('/login', userController.loginUser);
+router.post('/register', registerUser);
+router.post('/login', loginUser);
+router.post('/searchUsername', searchUserByUsername);
 
-router.post('/searchUsername', userController.searchUserByUsername);
-
-module.exports = router;
+export default router;
