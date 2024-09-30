@@ -1,6 +1,6 @@
 const express = require('express');
 const { upload } = require('../public/middlewares/multer'); 
-const { uploadCourse } = require('../controllers/CoursesController');
+const { uploadCourse, getCourses } = require('../controllers/CoursesController');
 
 const router = express.Router();
 
@@ -9,5 +9,8 @@ router.post('/uploadCourse', upload.fields([
     { name: 'courseImage', maxCount: 1 },
     { name: 'courseVideo', maxCount: 1 }
 ]), uploadCourse);
+
+// GET route to fetch all courses
+router.get('/allCourses', getCourses); // Use the getCourses function here
 
 module.exports = router;
