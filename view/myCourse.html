@@ -34,7 +34,12 @@
                     <div id="myCourses" class="tab-content">
                         <h4>My Courses</h4>
                         <div class="row mb-3" id="coursesContainer">
-                            <!-- Dynamic cards will be inserted here -->
+                            <!-- Dynamic course cards will be inserted here -->
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-dark" id="uploadCourseButton" data-bs-toggle="modal" data-bs-target="#uploadCourseModal">
+                                Upload Course
+                            </button>
                         </div>
                     </div>
                 
@@ -67,6 +72,47 @@
             </div>
         </main>        
         
+        <div class="modal fade" id="uploadCourseModal" tabindex="-1" aria-labelledby="uploadCourseModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uploadCourseModalLabel">Upload New Course</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="uploadCourseForm">
+                            <div class="mb-3">
+                                <label for="courseName" class="form-label">Course Name:</label>
+                                <input type="text" class="form-control" id="courseName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="coursePrice" class="form-label">Course Price:</label>
+                                <input type="number" class="form-control" id="coursePrice" step="0.01" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="courseDescription" class="form-label">Course Description:</label>
+                                <textarea class="form-control" id="courseDescription" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="courseImage" class="form-label">Upload Course Image:</label>
+                                <input type="file" class="form-control" id="courseImage" accept="image/*" required>
+                            </div>
+                            <!-- New Course Video Upload Section -->
+                            <div class="mb-3">
+                                <label for="courseVideo" class="form-label">Upload Course Video:</label>
+                                <input type="file" class="form-control" id="courseVideo" required>
+                            </div>
+                        </form>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" onclick="submitCourse()">Upload Course</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <p>© 2024 Created by Cher, CY, Nick, PJ</p>
         </footer>
