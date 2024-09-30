@@ -39,7 +39,6 @@ package-lock.json: A file that locks down the versions of dependencies used in t
 package.json: A file that describes the project, its dependencies, and scripts.
 README.md: This file (you're reading it now).
 
-
 Usage:
 
 Access the application: Open your web browser and navigate to http://localhost:3000 (or the port specified in your configuration).
