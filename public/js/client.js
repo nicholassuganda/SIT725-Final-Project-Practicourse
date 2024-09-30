@@ -65,7 +65,7 @@ function updateNavbar() {
                 ${storedUsername}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="./Profile.html">Profile</a></li>
+                <li><a class="dropdown-item" href="./myProfile.html">Profile</a></li>
                 <li><a class="dropdown-item" href="./settings.html">Settings</a></li>
                 <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
             </ul>
@@ -75,7 +75,7 @@ function updateNavbar() {
         userControlElement.innerHTML = '<a class="nav-link" href="./Login.html">Login</a>';
 
         // Redirect to login page if the current page is Profile.html and the user is not logged in
-        if (currentPage === 'Profile.html') {
+        if (currentPage === 'myProfile.html') {
             window.location.href = './Login.html';
         }
     }

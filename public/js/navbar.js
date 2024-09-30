@@ -30,8 +30,8 @@ function updateNavbar() {
         // Show a login button if not logged in
         $('#userControl').html('<a class="nav-link" href="./Login.html">Login</a>');
 
-        // Redirect to login page if the current page is Profile.html and the user is not logged in
-        if (currentPage === 'Profile.html') {
+        // Redirect to login page if the current page is myProfile.html and the user is not logged in
+        if (currentPage === 'myProfile.html') {
             window.location.href = './Login.html';
         }
     }
