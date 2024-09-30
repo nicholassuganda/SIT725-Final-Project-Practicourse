@@ -62,3 +62,20 @@ exports.getCourseById = async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch course details' });
     }
 };
+
+// Controller function to fetch all courses
+exports.getCourses = async (req, res) => {
+    try {
+        // Fetch all courses from the database
+        const courses = await Course.find();
+
+        // Return success response with the fetched courses
+        res.status(200).json({
+            message: 'Courses retrieved successfully!',
+            courses: courses
+        });
+    } catch (err) {
+        console.error('Error fetching courses:', err);
+        res.status(500).json({ message: 'Error fetching courses' });
+    }
+};

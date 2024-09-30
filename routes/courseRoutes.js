@@ -10,6 +10,9 @@ router.post('/uploadCourse', upload.fields([
     { name: 'courseVideo', maxCount: 1 }
 ]), Course.uploadCourse);
 
+// GET route to fetch all courses
+router.get('/allCourses', getCourses); // Use the getCourses function here
+
 // Route to fetch all courses
 router.get('/getAllCourses', Course.getAllCourses);
 
