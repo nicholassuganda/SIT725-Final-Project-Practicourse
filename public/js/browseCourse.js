@@ -1,57 +1,58 @@
-const courses = [
-    {
-        name: "First Aid Bootcamp",
-        description: "Learn the fundamentals of First Aid to help those in needs.",
-        thumbnail: "./images/image.jpg",
-        price: "$99.99",
-        detailsLink: "./courseDetail.html"
-    },
-    {
-        name: " Adobe Photoshop Mastery Class",
-        description: "Master Adobe Photoshop skill with practical examples.",
-        thumbnail: "./images/image2.jpg",
-        price: "$149.99",
-        detailsLink: "./courseDetail.html"
-    },
-    {
-        name: "Introduction to AI",
-        description: "Understand the basics of artificial intelligence, neural networks, and deep learning.",
-        thumbnail: "./images/image3.jpg",
-        price: "$199.99",
-        detailsLink: "./courseDetail.html"
-    }
-];
+// browseCourse.js
+import { courses } from './js/course.js'; // Ensure this points to your course data correctly
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayCourses(courses); // Display courses on page load
+});
 
 // Function to display courses
 function displayCourses(courseData) {
-    const courseListContainer = document.querySelector('.game-list');
-    courseListContainer.innerHTML = ''; // Clear any existing content
+    const courseList = document.querySelector('.course-list'); // Make sure this matches the HTML
+    courseList.innerHTML = ''; // Clear existing content
 
-    // Loop through each course and create its HTML structure
+    // Iterate over the course data and generate HTML for each course
     courseData.forEach(course => {
-        const courseEntry = `
-            <div class="game-entry m-3 p-2 border">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="${course.thumbnail}" alt="Course Thumbnail" class="img-fluid">
-                    </div>
-                    <div class="col-md-6">
-                        <h5>${course.name}</h5>
-                        <p>${course.description}</p>
-                    </div>
-                    <div class="col-md-3 text-end">
-                        <p class="game-price">${course.price}</p>
-                        <a href="${course.detailsLink}" class="btn btn-dark">View</a>
-                    </div>
+        const courseEntry = document.createElement('div');
+        courseEntry.classList.add('course-entry', 'm-3', 'p-2', 'border');
+        
+        // Construct the HTML for each course
+        courseEntry.innerHTML = `
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="${course.thumbnail}" alt="${course.name} Thumbnail" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h5>${course.name}</h5>
+                    <p>${course.description}</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <p class="course-price">$${course.price.toFixed(2)}</p>
+                    <a href="${course.detailsLink}" class="btn btn-dark">View</a>
                 </div>
             </div>
         `;
-        // Append the course entry to the list container
-        courseListContainer.insertAdjacentHTML('beforeend', courseEntry);
+        courseList.appendChild(courseEntry);
     });
 }
 
-// Call the function to display courses when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    displayCourses(courses);
+// Optional: Handle sorting and filtering (if you need it)
+document.getElementById('sortingForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const searchQuery = document.getElementById('searchName').value.toLowerCase();
+    const sortOption = document.getElementById('sortByName').value; // Ensure correct ID
+
+    // Filter courses based on search query
+    let filteredCourses = courses.filter(course => 
+        course.name.toLowerCase().includes(searchQuery)
+    );
+
+    // Sort courses based on selected option
+    if (sortOption === 'aToZ') {
+        filteredCourses.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortOption === 'zToA') {
+        filteredCourses.sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    // Re-render the course list
+    displayCourses(filteredCourses);
 });
