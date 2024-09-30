@@ -102,7 +102,7 @@ document.getElementById('btn_login')?.addEventListener('click', async function (
             emitLoginStatus(username);
 
             // Redirect to the home page
-            window.location.href = '/HomePage.html';
+            window.location.href = '/home.html';
         } else {
             alert('Login failed: ' + result.message);
         }
