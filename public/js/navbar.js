@@ -22,7 +22,7 @@ function updateNavbar() {
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="./myProfile.html">Profile</a></li>
-                <li><a class="dropdown-item" href="./myCourse.html">Settings</a></li>
+                <li><a class="dropdown-item" href="./myCourse.html">My Course</a></li>
                 <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
             </ul>
         `);
