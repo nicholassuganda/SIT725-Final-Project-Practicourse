@@ -29,9 +29,6 @@ document.getElementById('btn_login').addEventListener('click', async function ()
             console.log('Login successful!');
             alert('Login successful!');
             window.location.href = '/HomePage.html';
-        } else {
-            console.error('Login failed:', result.message);
-            alert('Error: ' + result.message); // Show the error message
         }
     } catch (err) {
         console.error('Login failed:', err);

@@ -64,3 +64,33 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+// Controller function to search for a user by username
+exports.searchUserByUsername = async (req, res) => {
+    try {
+        const { username } = req.body;  // Use req.body for POST requests
+
+        // Find the user by username
+        const user = await User.findOne({ username });
+
+        // If user not found, return a 404 error
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // If user is found, return the user's details (without the password)
+        res.status(200).json({
+            username: user.username,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            dob: user.dob,
+            gender: user.gender,
+            email: user.email,
+            role: user.role
+        });
+
+    } catch (err) {
+        console.error('Error searching for user:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
