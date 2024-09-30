@@ -31,7 +31,7 @@ app.use('/course', courseRoutes);   // Use course routes
 
 // Redirect to homepage
 app.get('/', (req, resp) => {
-    resp.redirect('/HomePage.html'); // Ensure HomePage.html is in your 'views' directory
+    resp.redirect('/home.html'); // Ensure home.html is in your 'views' directory
 });
 
 // Socket.io connection handler
