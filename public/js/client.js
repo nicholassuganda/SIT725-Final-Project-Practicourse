@@ -44,24 +44,15 @@ function logout() {
     window.location.href = '/Login.html';
 }
 
-// Function to update the navbar based on the user's login status
+// Update the navbar based on user's login status
 function updateNavbar() {
-    // Check if the navbar exists before attempting to update it
-    const userControlElement = document.getElementById('userControl');
-    
-    if (!userControlElement) {
-        console.warn('No navbar found on this page, skipping navbar update.');
-        return; // Exit the function if the navbar element doesn't exist
-    }
-
-    // Check if the user is logged in
     const storedUsername = sessionStorage.getItem('username');
-    const currentPage = window.location.pathname.split('/').pop(); // Get the current page name
-    
+    const currentPage = window.location.pathname.split('/').pop();
+
     if (storedUsername) {
-        // Change the navbar to show the user's name and a logout option
-        userControlElement.innerHTML = `
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="position: relative;">
+        // Show the username and log out dropdown in the navbar
+        document.getElementById('userControl').innerHTML = `
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 ${storedUsername}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
@@ -71,16 +62,16 @@ function updateNavbar() {
             </ul>
         `;
     } else {
-        // Show a login button if not logged in
-        userControlElement.innerHTML = '<a class="nav-link" href="./Login.html">Login</a>';
+        // Show the login button if not logged in
+        document.getElementById('userControl').innerHTML = '<a class="nav-link" href="./Login.html">Login</a>';
 
         // Redirect to login page if the current page is Profile.html and the user is not logged in
         if (currentPage === 'myProfile.html') {
+
             window.location.href = './Login.html';
         }
     }
 }
-
 
 // Listen for login events on specific pages (example: login.js may call this)
 document.getElementById('btn_login')?.addEventListener('click', async function () {

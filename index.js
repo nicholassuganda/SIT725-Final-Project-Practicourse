@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const http = require('http'); // To create the HTTP server
 const connectDB = require('./config/db'); // MongoDB connection
 const userRoutes = require('./routes/userRoutes'); // User routes
+const courseRoutes = require('./routes/courseRoutes'); // User routes
 const { Server } = require('socket.io');
 const path = require('path'); // To handle file paths
 
@@ -25,7 +26,8 @@ app.use(express.json());
 connectDB();
 
 // Routes
-app.use('/user', userRoutes);
+app.use('/user', userRoutes);       // Use user routes
+app.use('/course', courseRoutes);   // Use course routes
 
 // Redirect to homepage
 app.get('/', (req, resp) => {

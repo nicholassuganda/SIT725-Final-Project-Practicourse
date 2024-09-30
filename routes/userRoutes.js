@@ -8,6 +8,6 @@ router.post('/register', userController.registerUser); // Forward to the registe
 // Login route
 router.post('/login', userController.loginUser);
 
-
+router.post('/searchUsername', userController.searchUserByUsername);
 
 module.exports = router;

@@ -28,6 +28,7 @@ document.getElementById('btn_login').addEventListener('click', async function ()
             // Show the login message and redirect to homepage
             console.log('Login successful!');
             alert('Login successful!');
+
             window.location.href = '/home.html';
         } else {
             console.error('Login failed:', result.message);
