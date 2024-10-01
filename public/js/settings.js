@@ -75,3 +75,4 @@ function submitCourse() {
 document.addEventListener('DOMContentLoaded', function () {
     checkUserRole();
 });
+

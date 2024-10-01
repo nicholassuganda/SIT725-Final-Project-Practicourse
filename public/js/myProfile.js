@@ -84,3 +84,46 @@ function togglePasswordVisibility() {
         passwordVisible = !passwordVisible;
     }
 }
+
+// Function to fetch user details and display them on the page
+async function loadUserProfile(username) {
+    try {
+        const response = await fetch('/user/searchUsername', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username }) // Send the username to the server
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user profile');
+        }
+
+        const userData = await response.json();
+
+        // Update the HTML elements with the user data
+        document.getElementById('usernameDisplay').textContent = userData.username;
+        document.getElementById('firstNameDisplay').textContent = userData.firstname;
+        document.getElementById('lastNameDisplay').textContent = userData.lastname;
+        document.getElementById('billingAddressDisplay').textContent = userData.billingAddress || 'N/A';
+        document.getElementById('cityDisplay').textContent = userData.city || 'N/A';
+        document.getElementById('postalCodeDisplay').textContent = userData.postalCode || 'N/A';
+        document.getElementById('stateDisplay').textContent = userData.state || 'N/A';
+
+        // Mask the password field
+        document.getElementById('passwordDisplay').textContent = '********';
+
+    } catch (err) {
+        console.error('Error loading user profile:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const username = sessionStorage.getItem('username'); // Or however you're storing the username
+    if (username) {
+        loadUserProfile(username);  // Fetch the profile data and update the page
+    } else {
+        console.error('No username found in localStorage');
+    }
+});
