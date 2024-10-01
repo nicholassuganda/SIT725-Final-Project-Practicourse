@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "SIT725 - Applied Software Engineering Final Project Practicourse",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "test"
+    "start": "node .",
+    "test": "cross-env NODE_ENV=test mocha --timeout 10000 --reporter spec"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "express": "^4.21.0",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
@@ -18,5 +20,12 @@
     "node": "^22.8.0",
     "path": "^0.12.7",
     "socket.io": "^4.8.0"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "cross-env": "^7.0.3",
+    "mocha": "^10.7.3",
+    "mongodb-memory-server": "^10.0.1",
+    "supertest": "^7.0.0"
   }
 }

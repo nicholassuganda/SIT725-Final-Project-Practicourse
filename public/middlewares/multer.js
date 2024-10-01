@@ -1,6 +1,6 @@
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
 
 // Ensure necessary directories exist
 if (!fs.existsSync('uploads/images')) {
@@ -34,4 +34,4 @@ const fileFilter = (req, file, cb) => {
 // Initialize multer with storage and file filter
 const upload = multer({ storage, fileFilter });
 
-module.exports = { upload };
+export { upload };

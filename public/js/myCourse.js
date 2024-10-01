@@ -24,7 +24,7 @@ async function checkUserRole() {
             console.log('User role:', result.role);
             if (result.role === 'student') {
                 // Hide the Upload Course button if the user is a student
-                document.querySelector('.btn-dark').style.display = 'none';
+                document.getElementById('uploadCourseButton').style.display = 'none';
             }
         } else {
             alert(result.message || 'Failed to fetch user details');

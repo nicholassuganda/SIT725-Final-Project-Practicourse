@@ -1,11 +1,18 @@
-const User = require('../models/user');
-const bcrypt = require('bcrypt');
+import User from '../models/user.js'; // Import User model
+import bcrypt from 'bcryptjs'; // Import bcrypt for password hashing
 
 // Controller function to handle user registration
-exports.registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
     try {
         const { username, password, firstname, lastname, dob, gender, email, role } = req.body;
 
+        if (!username) {
+            return res.status(400).json({ message: 'Username is required' });
+        }
+        if (!password) {
+            return res.status(400).json({ message: 'Password is required' });
+        }
+        
         // Hash the password before saving it
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -38,9 +45,13 @@ exports.registerUser = async (req, res) => {
 };
 
 // Controller function to handle user login using username instead of email
-exports.loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
     try {
         const { username, password } = req.body;
+
+        // Check for missing fields
+        if (!username) return res.status(400).json({ message: 'Username is required' });
+        if (!password) return res.status(400).json({ message: 'Password is required' });
 
         // Check if user exists with the given username
         const user = await User.findOne({ username });
@@ -57,8 +68,6 @@ exports.loginUser = async (req, res) => {
         // If login is successful, respond with success
         res.status(200).json({ message: 'Login successful!' });
 
-        // (Optionally, you can also generate a token/session here if you're using JWT or sessions)
-
     } catch (err) {
         console.error('Error logging in user:', err);
         res.status(500).json({ message: 'Internal server error' });
@@ -66,7 +75,7 @@ exports.loginUser = async (req, res) => {
 };
 
 // Controller function to search for a user by username
-exports.searchUserByUsername = async (req, res) => {
+export const searchUserByUsername = async (req, res) => {
     try {
         const { username } = req.body;  // Use req.body for POST requests
 
