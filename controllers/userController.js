@@ -1,5 +1,5 @@
 import User from '../models/user.js'; // Import User model
-import bcrypt from 'bcrypt'; // Import bcrypt for password hashing
+import bcrypt from 'bcryptjs'; // Import bcrypt for password hashing
 
 // Controller function to handle user registration
 export const registerUser = async (req, res) => {
